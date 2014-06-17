@@ -1,0 +1,201 @@
+int Columnas[] = {
+  2, 3, 4, 5, 6, 7, 8, 9, 10};
+  
+int Plantas[] = {
+  22, 24, 26};
+
+int ntcpin=A1;
+
+int valorntc = 0;  // variable to store the value coming from the sensor
+
+int veloc=200;
+
+int RandColumna=0; //Variable para columna aleatoria
+
+int RandPlanta=0; //Variable para planta aleatoria
+
+int cont=2;
+
+int contador;
+
+int i=0; // variable plantas
+
+int j=0; // variable columnas
+
+int temperaturamaxima= 370;
+int temperaturaminima= 320;
+int tiempomaximo= 200;
+int tiempominimo= 20;
+
+void setup(){
+  for (contador = 0; contador < 9; contador++){ //se repite 9 veces 
+    pinMode(Columnas [contador], OUTPUT); 
+  }
+  for (contador = 0; contador < 3; contador++){ //se repite 3 veces 
+    pinMode(Plantas [contador], OUTPUT); 
+  }
+  Serial.begin(9600);
+}
+
+
+//cuando el contador vaya sumando a uno se va cambiando dependiendo en que numero este
+void loop(){
+  Serial.println(cont); 
+  valorntc=analogRead(ntcpin);
+  veloc=map(valorntc,temperaturaminima,temperaturamaxima,tiempomaximo,tiempominimo);
+  Serial.print("valorntc="); 
+  Serial.println(valorntc);
+  Serial.print("velocidad=");
+  Serial.println(veloc);
+
+
+    aleatorio(); 
+  //Programa columnas
+  
+    columnas(); 
+  //Programa plantas
+
+    plantas(); 
+  //Se vuelve a repetir el programa
+} 
+
+
+//Hay una interrupción en el programa, y al pulsador se le suma cada vez uno mas
+void aleatorio (){ 
+  for(i=0; i<27; i++){
+    valorntc=analogRead(ntcpin);
+    veloc=map(valorntc,temperaturaminima,temperaturamaxima,tiempomaximo,tiempominimo);
+    RandPlanta = random(0, 3); 
+    RandColumna = random(0, 9); 
+    digitalWrite(Plantas[RandPlanta], HIGH); 
+    digitalWrite(Columnas[RandColumna], HIGH); 
+    delay(veloc); 
+    digitalWrite(Plantas[RandPlanta], LOW); 
+    digitalWrite(Columnas[RandColumna], LOW); 
+    delay(veloc); 
+  }
+} 
+
+//se van encendiendo todos los led de la planta y una vez que se han encendido todos se encienden los de otra planta
+void columnas() { 
+  for(j=0;j<9;j++){ //se repite 9 veces la variable columnas
+    for (i=0;i<3;i++){ //se repite 3 veces la variable filas
+      valorntc=analogRead(ntcpin);
+      veloc=map(valorntc,temperaturaminima,temperaturamaxima,tiempomaximo,tiempominimo);
+      digitalWrite(Columnas[j], HIGH); //las columnas se enciendes
+      digitalWrite(Plantas[i], HIGH); //las filas se encienden
+      delay(veloc); 
+      digitalWrite(Columnas[j], LOW); //las columnas se apagan
+      digitalWrite(Plantas[i], LOW); //las filas se apagan
+      delay(veloc); 
+    } 
+  } 
+} 
+
+//va de led en led por plantas y una vez que acaba una planta pasa a otra, las columnas se repiten hasta 9 veces, y las platas hasta 3 veces
+void plantas(){
+  for(i=0;i<3;i++){ //se repite 3 veces la variable filas
+    for (j=0;j<9;j++){ // se repite 9 veces la variable columnas
+      valorntc=analogRead(ntcpin);
+      veloc=map(valorntc,temperaturaminima,temperaturamaxima,tiempomaximo,tiempominimo);
+      digitalWrite(Plantas[i], HIGH); //las filas se encienden
+      digitalWrite(Columnas[j], HIGH); //las columnas se encienden
+      delay(veloc); 
+      digitalWrite(Plantas[i], LOW); //las filas se apagan
+      digitalWrite(Columnas[j], LOW); //las columnas se apagan
+      delay(veloc); 
+    } 
+  } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
