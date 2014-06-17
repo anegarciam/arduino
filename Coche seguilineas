@@ -1,0 +1,183 @@
+Turns on an LED on for one second, then off for one second, repeatedly.
+This example code is in the public domain.
+*/
+
+// Pin 13 has an LED connected on most Arduino boards.
+// give it a name:
+int InA = 12; //Blanco Motor Derecho
+int InB = 11;//Amarillo Motor Derecho
+int InC = 10; //Rojo Motor Izquierda
+int InD = 9; //Azul Motor Izquierda
+
+// the setup routine runs once when you press reset:
+void setup() {
+// initialize the digital pin as an output.
+pinMode (InA,OUTPUT);
+pinMode (InB,OUTPUT);
+pinMode (InC,OUTPUT);
+pinMode (InD,OUTPUT);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+delante();
+delay(500);
+detras();
+delay(500);
+derecha();
+delay(500);
+izquierda();
+delay(500);
+quieto();
+delay(500);
+}
+void delante(){
+digitalWrite (InA, HIGH);
+digitalWrite (InB, LOW);
+digitalWrite (InC, LOW);
+digitalWrite (InD, HIGH);
+}
+
+void detras(){
+digitalWrite (InA, LOW);
+digitalWrite (InB, HIGH);
+digitalWrite (InC, HIGH);
+digitalWrite (InD, LOW);
+}
+
+void derecha(){
+digitalWrite (InA, HIGH);
+digitalWrite (InB, LOW);
+digitalWrite (InC, HIGH);
+digitalWrite (InD, LOW);
+}
+
+void izquierda(){
+digitalWrite (InA, LOW);
+digitalWrite (InB, HIGH);
+digitalWrite (InC, LOW);
+digitalWrite (InD, HIGH);
+}
+void quieto(){
+digitalWrite (InA, LOW);
+digitalWrite (InB, LOW);
+digitalWrite (InC, LOW);
+digitalWrite (InD, LOW);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
